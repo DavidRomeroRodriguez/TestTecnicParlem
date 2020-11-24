@@ -1,5 +1,5 @@
 from business import ProductBusiness
-from flask import Blueprint, jsonify, request
+from flask import abort, Blueprint, jsonify, request
 
 blueprint = Blueprint('product', __name__)
 business = ProductBusiness()
@@ -14,4 +14,4 @@ def api_get_product_by_id():
         id = int(request.args['id'])
         return jsonify(business.get_product_by_id(id, True))
     else:
-        return "Error: The request argument 'id' was not provided."
+        abort(400, "Error: The request argument 'id' was not provided.")

@@ -1,10 +1,14 @@
 import flask
 from flask import request, jsonify
+from flask_cors import CORS
 from api import brand, customer, product
 
-app = flask.Flask(__name__)
-app.config["DEBUG"] = False
-app.register_blueprint(brand.blueprint)
-app.register_blueprint(customer.blueprint)
-app.register_blueprint(product.blueprint)
-app.run()
+
+if __name__ == "__main__":
+    app = flask.Flask(__name__)
+    app.config["DEBUG"] = False
+    app.register_blueprint(brand.blueprint) # Registers the 'Brand' blueprint and its API routes.
+    app.register_blueprint(customer.blueprint) # Registers the 'Customer' blueprint and its API routes.
+    app.register_blueprint(product.blueprint) # Registers the 'Product' blueprint and its API routes.
+    CORS(app)
+    app.run()
